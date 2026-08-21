@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaterX Asia — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0E2A3E;
+    --primary:#065A82;
+    --secondary:#1C7293;
+    --accent-dark:#21295C;
+    --amber:#E8A33D;
+    --amber-dark:#8A5A16;
+    --ice:#EAF4F8;
+    --ice-border:#CFE4EC;
+    --text-dark:#152430;
+    --muted:#5B6B75;
+    --white:#FFFFFF;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;color:var(--text-dark);background:var(--white);line-height:1.6;}
+  h1,h2,h3,h4{font-family:'Poppins',sans-serif;font-weight:600;color:var(--navy);}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .demo-banner{background:var(--accent-dark);color:#C9D6F2;text-align:center;font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.4px;}
+  .demo-banner b{color:#fff;}
+
+  header{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--ice-border);z-index:50;}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Poppins';font-weight:700;font-size:16px;flex-shrink:0;}
+  .brand-name{font-family:'Poppins';font-weight:600;font-size:17px;color:var(--navy);line-height:1.1;}
+  .brand-tag{font-size:11px;color:var(--muted);letter-spacing:.5px;}
+  nav.links{display:flex;gap:34px;align-items:center;}
+  nav.links a{font-size:15px;font-weight:600;color:var(--text-dark);}
+  nav.links a:hover{color:var(--primary);}
+  .btn{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;padding:11px 20px;border-radius:10px;border:none;cursor:pointer;}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{background:#054766;}
+  .btn-amber{background:var(--amber);color:#402c07;}
+  .btn-amber:hover{background:#d9922f;}
+  .btn-ghost{background:transparent;border:1.5px solid var(--ice-border);color:var(--text-dark);}
+  .btn-ghost:hover{border-color:var(--primary);color:var(--primary);}
+  .btn-sm{padding:8px 14px;font-size:13px;border-radius:8px;}
+  .btn-dark-ghost{background:transparent;border:1.5px solid #2C5871;color:#fff;}
+
+  .hero{background:linear-gradient(180deg,var(--ice) 0%,#ffffff 100%);padding:56px 0 44px;}
+  .eyebrow{display:inline-block;background:#DCEEF5;color:var(--primary);font-size:12.5px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:18px;letter-spacing:.3px;}
+  .hero h1{font-size:38px;line-height:1.2;margin-bottom:16px;max-width:760px;}
+  .hero h1 span{color:var(--secondary);}
+  .hero p.lead{font-size:16px;color:var(--muted);max-width:640px;margin-bottom:30px;}
+  .quicknav{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .quicknav-card{background:#fff;border:1px solid var(--ice-border);border-radius:var(--radius);padding:22px;cursor:pointer;transition:box-shadow .15s, transform .15s;}
+  .quicknav-card:hover{box-shadow:0 14px 30px rgba(14,42,62,.09);transform:translateY(-2px);}
+  .quicknav-num{width:32px;height:32px;border-radius:8px;background:var(--ice);color:var(--primary);font-family:'Poppins';font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .quicknav-card h3{font-size:16.5px;margin-bottom:6px;}
+  .quicknav-card p{font-size:13px;color:var(--muted);}
+
+  section{padding:56px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;flex-wrap:wrap;gap:14px;}
+  .section-head h2{font-size:27px;}
+  .section-head p{color:var(--muted);font-size:14.5px;margin-top:4px;max-width:640px;}
+  .tag-pill{display:inline-block;font-size:11.5px;font-weight:600;padding:4px 11px;border-radius:999px;letter-spacing:.3px;}
+  .tag-know{background:#DCEEF5;color:#0B4A66;}
+  .tag-comm{background:#FBEEDD;color:var(--amber-dark);}
+
+  .subtabs{display:flex;gap:6px;margin-bottom:32px;border-bottom:1.5px solid var(--ice-border);flex-wrap:wrap;}
+  .subtab-btn{padding:12px 20px;font-size:14.5px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2.5px solid transparent;margin-bottom:-1.5px;font-family:'Inter';}
+  .subtab-btn.active{color:var(--primary);border-color:var(--primary);}
+  .subtab-btn:hover{color:var(--primary);}
+  .tab-pane{display:none;}
+  .tab-pane.active{display:block;}
+
+  .insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .insight-card{background:var(--ice);border-radius:var(--radius);padding:22px;border:1px solid var(--ice-border);}
+  .insight-card .meta{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);margin-bottom:12px;}
+  .insight-card h3{font-size:16px;margin-bottom:8px;line-height:1.35;}
+  .insight-card p{font-size:13.3px;color:var(--muted);}
+  .article-card{border:1px solid var(--ice-border);border-radius:var(--radius);padding:22px;}
+  .article-card .meta{font-size:11.5px;color:var(--muted);margin-bottom:10px;}
+  .article-card h3{font-size:16.5px;margin-bottom:8px;line-height:1.35;}
+  .article-card p{font-size:13.3px;color:var(--muted);margin-bottom:14px;}
+  .subhead{font-size:16.5px;margin:8px 0 18px;color:var(--navy);}
+
+  .opp-row{display:grid;grid-template-columns:110px 1.6fr 150px 100px 140px;gap:12px;align-items:center;padding:13px 14px;border:1px solid var(--ice-border);border-radius:10px;font-size:13px;}
+  .opp-row.head{background:var(--ice);border:none;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.3px;padding:9px 14px;}
+  .opp-country{font-weight:600;color:var(--navy);}
+  .opp-value{font-family:'Poppins';font-weight:600;color:var(--navy);}
+  .opp-status{display:inline-block;font-size:11px;font-weight:600;padding:4px 10px;border-radius:999px;text-align:center;}
+  .status-open{background:#E3F3EA;color:#1E7A46;}
+  .status-ppp{background:#FBEEDD;color:var(--amber-dark);}
+  .status-feas{background:#DCEEF5;color:#0B4A66;}
+  .opp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:40px;}
+
+  .dash-banner{background:#fff;border:1px solid var(--ice-border);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--muted);margin-bottom:26px;display:flex;align-items:center;gap:10px;}
+  .dash-banner b{color:var(--navy);}
+  .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:26px;}
+  .kpi-card{background:#fff;border:1px solid var(--ice-border);border-radius:12px;padding:16px;text-align:center;}
+  .kpi-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .kpi-value{font-family:'Poppins';font-weight:700;font-size:20px;color:var(--navy);}
+  .dash-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;margin-bottom:20px;}
+  .dash-card{background:#fff;border:1px solid var(--ice-border);border-radius:var(--radius);padding:22px;}
+  .dash-card h3{font-size:15.5px;margin-bottom:16px;text-align:center;}
+  .gauge-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .gauge{text-align:center;}
+  .gauge-legend{display:flex;justify-content:center;gap:14px;font-size:11px;color:var(--muted);margin-bottom:8px;}
+  .gauge-legend span{display:inline-flex;align-items:center;gap:4px;}
+  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+  .dot.company{background:#7C6FE0;}
+  .dot.industry{background:#D85A30;}
+  .gauge-shell{position:relative;width:140px;height:70px;margin:0 auto;overflow:hidden;}
+  .gauge-arc{position:absolute;top:0;left:0;width:140px;height:140px;border-radius:50%;}
+  .gauge-tick{position:absolute;bottom:0;left:50%;width:2px;height:64px;background:#D85A30;transform-origin:bottom center;margin-left:-1px;}
+  .gauge-value{font-family:'Poppins';font-weight:700;font-size:19px;color:var(--navy);margin-top:6px;}
+  .gauge-title{font-size:12px;color:var(--muted);margin-top:2px;}
+  .donut-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .donut-box{text-align:center;}
+  .donut-box h4{font-size:13.5px;color:var(--muted);font-weight:500;margin-bottom:8px;}
+  .insight-callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px;}
+  .insight-callout{background:var(--ice);border-left:3px solid var(--secondary);border-radius:0 10px 10px 0;padding:14px 16px;font-size:13px;color:var(--text-dark);line-height:1.55;}
+  .insight-callout b{color:var(--navy);}
+
+  .filter-row{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap;}
+  .chip{padding:8px 16px;border-radius:999px;border:1.5px solid var(--ice-border);background:#fff;font-size:13.5px;font-weight:500;cursor:pointer;color:var(--text-dark);}
+  .chip.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+
+  .supplier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .supplier-card{border:1px solid var(--ice-border);border-radius:var(--radius);padding:22px;transition:box-shadow .15s, transform .15s;}
+  .supplier-card:hover{box-shadow:0 14px 34px rgba(14,42,62,.1);transform:translateY(-2px);}
+  .supplier-card.basic{border-style:dashed;background:#FAFBFC;}
+  .supplier-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .supplier-logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent-dark));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Poppins';font-weight:700;font-size:16px;flex-shrink:0;}
+  .supplier-logo.basic{background:#C7D2D8;color:#5B6B75;}
+  .supplier-name{font-family:'Poppins';font-weight:600;font-size:15px;line-height:1.3;}
+  .supplier-loc{font-size:12px;color:var(--muted);}
+  .badges{display:flex;gap:6px;margin:10px 0 12px;flex-wrap:wrap;}
+  .badge{font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:6px;display:inline-flex;align-items:center;gap:4px;}
+  .tag-pill{display:inline-flex;align-items:center;gap:6px;}
+  .deal-badge{display:inline-flex;align-items:center;gap:5px;}
+  .badge-verified{background:#E3F3EA;color:#1E7A46;}
+  .badge-en{background:#DCEEF5;color:#0B4A66;}
+  .badge-cat{background:#F4F8FA;color:var(--muted);}
+  .badge-basic{background:#EFEFEC;color:#5B6B75;}
+  .supplier-desc{font-size:13.3px;color:var(--muted);margin-bottom:16px;min-height:58px;}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;}
+
+  .mna-note{background:#FBEEDD;border:1px solid #F1D9AE;border-radius:12px;padding:14px 18px;font-size:13px;color:var(--amber-dark);margin-bottom:26px;}
+  .mna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .mna-card{border:1px solid var(--ice-border);border-radius:var(--radius);padding:22px;display:flex;flex-direction:column;}
+  .mna-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+  .mna-country{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.3px;}
+  .deal-badge{font-size:10.5px;font-weight:600;padding:4px 10px;border-radius:999px;}
+  .badge-stake{background:#EEEDFE;color:#3C3489;}
+  .badge-acquisition{background:#FAECE7;color:#712B13;}
+  .badge-partnership{background:#E1F5EE;color:#085041;}
+  .badge-investment{background:#FAEEDA;color:#633806;}
+  .mna-card h3{font-size:15.5px;margin-bottom:10px;line-height:1.35;}
+  .mna-teaser{font-size:13.3px;color:var(--muted);margin-bottom:14px;flex-grow:1;}
+  .mna-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+  .mna-meta span{font-size:11px;background:var(--ice);color:var(--primary);padding:4px 9px;border-radius:6px;}
+
+  .cta-section{background:var(--navy);color:#fff;}
+  .cta-section .section-head h2, .cta-section .section-head p{color:#fff;}
+  .cta-section .section-head p{color:#AFC7D6;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .price-grid-3{grid-template-columns:repeat(3,1fr);}
+  .price-grid-2{grid-template-columns:repeat(2,1fr);max-width:760px;}
+  .price-card{background:#12354B;border-radius:var(--radius);padding:24px;border:1px solid #1E4E68;display:flex;flex-direction:column;}
+  .price-card.featured{border:2px solid var(--amber);background:#123B54;position:relative;}
+  .featured-badge{position:absolute;top:-13px;left:22px;background:var(--amber);color:#402c07;font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;}
+  .price-card h3{color:#fff;font-size:16.5px;margin-bottom:6px;}
+  .price-card .price{font-family:'Poppins';font-weight:700;font-size:22px;color:#fff;margin:10px 0 4px;}
+  .price-card .price span{font-size:12.5px;font-weight:500;color:#9FC1D4;}
+  .price-note{font-size:11.5px;color:#9FC1D4;margin-bottom:16px;}
+  .price-card ul{list-style:none;margin-bottom:20px;flex-grow:1;}
+  .price-card li{font-size:12.8px;color:#D7E7EE;padding:7px 0;border-top:1px solid #1E4E68;}
+  .price-card li:first-child{border-top:none;}
+
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .about h2{font-size:26px;margin-bottom:14px;}
+  .about p{color:var(--muted);font-size:14.5px;margin-bottom:14px;}
+  .about-cards{display:grid;gap:14px;}
+  .about-card{background:var(--ice);border-radius:12px;padding:18px 20px;}
+  .about-card b{font-family:'Poppins';color:var(--navy);}
+
+  footer{background:#0A1F2E;color:#8CA9B8;padding:40px 0 26px;font-size:13px;}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:24px;}
+  footer a{color:#B9D3E0;}
+  .foot-note{border-top:1px solid #16303F;padding-top:18px;font-size:12px;color:#5E7C8B;}
+
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,25,35,.55);z-index:100;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#fff;border-radius:18px;max-width:640px;width:100%;max-height:88vh;overflow-y:auto;padding:0;}
+  .modal-head{padding:22px 26px;border-bottom:1px solid var(--ice-border);display:flex;justify-content:space-between;align-items:center;}
+  .modal-head h3{font-size:18px;}
+  .modal-close{cursor:pointer;font-size:22px;color:var(--muted);background:none;border:none;line-height:1;}
+  .modal-body{padding:24px 26px;}
+  .modal-video{background:var(--navy);border-radius:12px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:#AFC7D6;font-size:13px;margin-bottom:18px;position:relative;}
+  .play-btn{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;margin-bottom:10px;}
+  .modal-body h4{font-size:15px;margin:16px 0 6px;color:var(--navy);}
+  .modal-body p{font-size:13.5px;color:var(--muted);margin-bottom:6px;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;}
+
+  .icon-circle{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+  .icon-teal{background:#DCEEF5;color:var(--primary);}
+  .icon-amber{background:#FBEEDD;color:var(--amber-dark);}
+  .icon-navy{background:#E4E6F5;color:var(--accent-dark);}
+  .icon-green{background:#E3F3EA;color:#1E7A46;}
+  .icon-coral{background:#FAECE7;color:#B0512F;}
+  .icon-sm{width:34px;height:34px;border-radius:9px;font-size:15px;}
+
+  .hero{position:relative;padding:0;overflow:hidden;}
+  .hero-media{position:relative;min-height:420px;display:flex;align-items:center;background:linear-gradient(120deg,rgba(10,31,46,.92) 10%,rgba(6,90,130,.72) 60%,rgba(6,90,130,.4) 100%),url('https://picsum.photos/id/1043/1600/800') center/cover;}
+  .hero-media .wrap{padding:64px 24px;}
+  .hero .eyebrow{background:rgba(255,255,255,.15);color:#DCEEF5;}
+  .hero h1{color:#fff;}
+  .hero h1 span{color:#8FE3D0;}
+  .hero p.lead{color:#D7E7EE;}
+  .quicknav{position:relative;margin-top:-64px;z-index:2;}
+  .hero > .wrap:last-child{padding-bottom:52px;}
+  .quicknav-card{background:#fff;}
+  .quicknav-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
+
+  .card-img{width:100%;height:130px;border-radius:10px 10px 0 0;object-fit:cover;display:block;background:var(--ice);}
+  .insight-card{padding:0;overflow:hidden;}
+  .insight-card .card-body{padding:18px 20px 20px;}
+  .article-card{padding:0;overflow:hidden;}
+  .article-card .card-body{padding:20px 22px 22px;}
+  .cat-icon-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .cat-icon-row .icon-circle{margin-bottom:0;}
+
+  .supplier-thumb{width:100%;height:110px;border-radius:10px;object-fit:cover;margin-bottom:14px;background:var(--ice);}
+  .opp-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+  .opp-row{grid-template-columns:34px 90px 1.5fr 140px 90px 130px;}
+  .opp-row.head{grid-template-columns:34px 90px 1.5fr 140px 90px 130px;}
+  .mna-icon-wrap{display:flex;justify-content:center;margin-bottom:14px;}
+  .mna-icon-wrap .icon-circle{width:52px;height:52px;font-size:22px;border-radius:14px;}
+  .price-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;background:rgba(255,255,255,.12);color:#8FE3D0;margin-bottom:14px;}
+  .about-card{display:flex;gap:14px;align-items:flex-start;}
+  .about-photo{width:100%;height:180px;border-radius:14px;object-fit:cover;margin-bottom:18px;}
+  .stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px;}
+  .stat-strip div{text-align:center;}
+  .stat-strip .n{font-family:'Poppins';font-weight:700;font-size:24px;color:#fff;}
+  .stat-strip .l{font-size:11.5px;color:#BFE0EA;margin-top:4px;}
+  .dash-card h3{display:flex;align-items:center;justify-content:center;gap:8px;}
+  .dash-card h3 i{color:var(--secondary);font-size:15px;}
+  .kpi-card{display:flex;align-items:center;gap:12px;text-align:left;}
+  .kpi-card .icon-circle{margin-bottom:0;}
+
+  @media(max-width:860px){
+    .quicknav,.insight-grid,.supplier-grid,.price-grid,.price-grid-3,.price-grid-2,.about,.dash-grid,.gauge-grid,.donut-grid,.insight-callouts,.mna-grid,.stat-strip{grid-template-columns:1fr;}
+    .kpi-row{grid-template-columns:repeat(2,1fr);}
+    .opp-row{grid-template-columns:1fr;gap:4px;}
+    .opp-row.head{display:none;}
+    nav.links{display:none;}
+    .hero h1{font-size:30px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">DEMO MOCKUP — for internal discussion only. <b>Company names, figures and content below are illustrative, not real.</b></div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="brand-mark">AW</div>
+      <div>
+        <div class="brand-name">WaterX Asia</div>
+        <div class="brand-tag">Water in Asia</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#insights">Insights</a>
+      <a href="#commercial">Commercial</a>
+      <a href="#about">About</a>
+    </nav>
+    <a href="javascript:void(0)" onclick="goTo('commercial','list')" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> List your company</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-media">
+    <div class="wrap">
+      <span class="eyebrow"><i class="fa-solid fa-droplet"></i> China water tech, translated for Asia</span>
+      <h1>One portal for <span>water-sector intelligence</span> and <span>commercial opportunity</span> across ASEAN</h1>
+      <p class="lead">Market data, tenders and thought leadership on one side. Verified Chinese supplier profiles and confidential M&amp;A opportunities on the other.</p>
+      <div class="stat-strip">
+        <div><div class="n">6</div><div class="l">ASEAN markets covered</div></div>
+        <div><div class="n">180+</div><div class="l">Supplier profiles</div></div>
+        <div><div class="n">USD18.4B</div><div class="l">Tracked investment pipeline</div></div>
+        <div><div class="n">6</div><div class="l">Live M&amp;A opportunities</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="quicknav">
+      <div class="quicknav-card" onclick="goTo('insights','opportunities')">
+        <div class="quicknav-icon icon-teal"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Insights</h3>
+        <p>Tenders and news, the ASEAN water data dashboard, and thought leadership from the region.</p>
+      </div>
+      <div class="quicknav-card" onclick="goTo('commercial','profiles')">
+        <div class="quicknav-icon icon-amber"><i class="fa-solid fa-handshake"></i></div>
+        <h3>Commercial</h3>
+        <p>Chinese supplier profiles for the ASEAN market, plus a confidential deal room for M&amp;A and partnerships.</p>
+      </div>
+      <div class="quicknav-card" onclick="location.href='#about'">
+        <div class="quicknav-icon icon-navy"><i class="fa-solid fa-circle-info"></i></div>
+        <h3>About</h3>
+        <p>Who's behind the platform, and how it's built.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="insights" style="background:var(--ice);">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="tag-pill tag-know"><i class="fa-solid fa-chart-line"></i> Market intelligence</span>
+        <h2 style="margin-top:10px;">Insights</h2>
+        <p>Everything on the knowledge side of the platform — opportunities, data and analysis.</p>
+      </div>
+    </div>
+
+    <div class="subtabs">
+      <button class="subtab-btn active" data-group="insights" data-tab="opportunities" onclick="goTo('insights','opportunities')">Opportunities</button>
+      <button class="subtab-btn" data-group="insights" data-tab="news" onclick="goTo('insights','news')">News</button>
+      <button class="subtab-btn" data-group="insights" data-tab="dashboard" onclick="goTo('insights','dashboard')">Data &amp; research</button>
+      <button class="subtab-btn" data-group="insights" data-tab="leadership" onclick="goTo('insights','leadership')">Thought leadership</button>
+    </div>
+
+    <div class="tab-pane active" data-group="insights" data-tab="opportunities">
+      <h3 class="subhead">Priority opportunities this quarter</h3>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:720px;">Tenders, PPP screenings and project leads, sourced and screened from public procurement notices across ASEAN.</p>
+      <div class="opp-list">
+        <div class="opp-row head"><span></span><span>Country</span><span>Opportunity</span><span>Segment</span><span>Est. value</span><span>Stage</span></div>
+        <div class="opp-row"><span class="opp-icon icon-teal"><i class="fa-solid fa-droplet"></i></span><span class="opp-country">Malaysia</span><span>Selangor 40 MLD membrane upgrade</span><span>Water supply</span><span class="opp-value">USD85M</span><span class="opp-status status-open">Tender open</span></div>
+        <div class="opp-row"><span class="opp-icon icon-navy"><i class="fa-solid fa-water"></i></span><span class="opp-country">Indonesia</span><span>Jakarta Bay desalination PPP</span><span>Desalination</span><span class="opp-value">USD310M</span><span class="opp-status status-ppp">PPP screening</span></div>
+        <div class="opp-row"><span class="opp-icon icon-coral"><i class="fa-solid fa-recycle"></i></span><span class="opp-country">Vietnam</span><span>Mekong Delta wastewater network</span><span>Wastewater</span><span class="opp-value">USD240M</span><span class="opp-status status-feas">Feasibility</span></div>
+        <div class="opp-row"><span class="opp-icon icon-teal"><i class="fa-solid fa-droplet"></i></span><span class="opp-country">Philippines</span><span>Metro Cebu bulk water supply</span><span>Water supply</span><span class="opp-value">USD150M</span><span class="opp-status status-ppp">PPP screening</span></div>
+        <div class="opp-row"><span class="opp-icon icon-amber"><i class="fa-solid fa-bolt"></i></span><span class="opp-country">Thailand</span><span>Eastern Seaboard industrial water reuse</span><span>Digital and reuse</span><span class="opp-value">USD60M</span><span class="opp-status status-open">Tender open</span></div>
+        <div class="opp-row"><span class="opp-icon icon-amber"><i class="fa-solid fa-microchip"></i></span><span class="opp-country">Singapore</span><span>NEWater smart monitoring upgrade</span><span>Digital and smart water</span><span class="opp-value">USD25M</span><span class="opp-status status-feas">Feasibility</span></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);">Refreshed weekly as part of the platform's market-intelligence feed.</p>
+    </div>
+
+    <div class="tab-pane" data-group="insights" data-tab="news">
+      <h3 class="subhead">Latest news</h3>
+      <div class="insight-grid">
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1040/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-teal"><i class="fa-solid fa-gavel"></i></span><span class="meta">PROCUREMENT · MALAYSIA · 2 Aug 2026</span></div>
+            <h3>SPAN opens tender for 40 MLD membrane upgrade in Selangor</h3>
+            <p>Ministry-linked utility issues RFP for advanced membrane filtration — closing date and technical criteria summarised.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1048/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-navy"><i class="fa-solid fa-landmark"></i></span><span class="meta">POLICY · CHINA · 30 Jul 2026</span></div>
+            <h3>MEE tightens discharge standards for industrial wastewater</h3>
+            <p>New national standard raises demand for Chinese advanced treatment exporters targeting Southeast Asia.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1015/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-green"><i class="fa-solid fa-chart-line"></i></span><span class="meta">INVESTMENT · ASEAN · 27 Jul 2026</span></div>
+            <h3>Vietnam PPP pipeline adds three desalination projects</h3>
+            <p>Screening note on sponsors, financing structure and opportunities for technology and EPC partners.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1024/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-coral"><i class="fa-solid fa-scale-balanced"></i></span><span class="meta">REGULATION · INDONESIA · 24 Jul 2026</span></div>
+            <h3>Jakarta water utility issues new tariff adjustment roadmap</h3>
+            <p>Phased tariff increases through 2028 aim to close the funding gap for network rehabilitation.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1060/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-amber"><i class="fa-solid fa-handshake"></i></span><span class="meta">M&amp;A · THAILAND · 21 Jul 2026</span></div>
+            <h3>Regional utility group expands stake in industrial water reuse platform</h3>
+            <p>Deal signals growing investor appetite for water-reuse assets serving export manufacturing zones.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/0/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-navy"><i class="fa-solid fa-microchip"></i></span><span class="meta">TECHNOLOGY · CHINA · 18 Jul 2026</span></div>
+            <h3>Chinese IoT sensor makers report rising ASEAN export orders</h3>
+            <p>Smart metering and remote monitoring demand climbs as utilities digitise leak detection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" data-group="insights" data-tab="dashboard">
+      <div class="dash-banner"><i class="fa-solid fa-circle-info" style="color:var(--secondary);"></i> Recreated from STRAT369's Water+ Dashboard for platform demonstration. Sample view: six ASEAN markets — <b>Malaysia, Indonesia, Vietnam, Philippines, Thailand, Singapore</b> — 2025 indicators.</div>
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="icon-circle icon-green"><i class="fa-solid fa-sack-dollar"></i></div><div><div class="kpi-label">Investment pipeline</div><div class="kpi-value">USD18.4B</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-teal"><i class="fa-solid fa-users"></i></div><div><div class="kpi-label">Population served</div><div class="kpi-value">452M</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-coral"><i class="fa-solid fa-droplet-slash"></i></div><div><div class="kpi-label">Avg. non-revenue water</div><div class="kpi-value">28.5%</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-amber"><i class="fa-solid fa-file-contract"></i></div><div><div class="kpi-label">Active PPP / tenders</div><div class="kpi-value">214</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-navy"><i class="fa-solid fa-tags"></i></div><div><div class="kpi-label">Avg. water tariff</div><div class="kpi-value">USD0.42/m³</div></div></div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-card">
+          <h3><i class="fa-solid fa-chart-column"></i> Investment pipeline vs. non-revenue water, by country</h3>
+          <canvas id="trendChart" height="220"></canvas>
+        </div>
+        <div class="dash-card">
+          <h3><i class="fa-solid fa-gauge-high"></i> ASEAN water industry metrics</h3>
+          <div class="gauge-grid">
+            <div class="gauge" id="gauge1"></div>
+            <div class="gauge" id="gauge2"></div>
+            <div class="gauge" id="gauge3"></div>
+            <div class="gauge" id="gauge4"></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-grid" style="grid-template-columns:1fr 1.3fr;">
+        <div class="dash-card">
+          <h3><i class="fa-solid fa-chart-pie"></i> Composition of the investment pipeline</h3>
+          <div class="donut-grid">
+            <div class="donut-box"><h4>By segment</h4><canvas id="incomeDonut" height="160"></canvas></div>
+            <div class="donut-box"><h4>By country</h4><canvas id="expenseDonut" height="160"></canvas></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <h3><i class="fa-solid fa-lightbulb"></i> What the numbers say</h3>
+          <div class="insight-callouts" style="grid-template-columns:1fr;">
+            <div class="insight-callout"><b>Investment concentration:</b> Indonesia and Vietnam together account for over half of ASEAN's identified water and wastewater pipeline, driven by urban population growth and PPP reform.</div>
+            <div class="insight-callout"><b>Efficiency gap:</b> non-revenue water exceeds 35% in the Philippines and Indonesia — more than four times Singapore's sub-9% benchmark, and the region's single biggest efficiency opportunity.</div>
+            <div class="insight-callout"><b>Next wave:</b> wastewater treatment coverage (61% average) lags drinking-water access (92% average) across most of ASEAN, pointing to where the next investment cycle is likely to land.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" data-group="insights" data-tab="leadership">
+      <div class="insight-grid">
+        <div class="article-card">
+          <img class="card-img" src="https://picsum.photos/id/1036/500/300" alt="">
+          <div class="card-body">
+            <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 8 MIN READ</div>
+            <h3>Why non-revenue water is ASEAN's next trillion-ringgit opportunity</h3>
+            <p>A look at how closing the region's efficiency gap compares, dollar for dollar, with building new capacity.</p>
+            <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img class="card-img" src="https://picsum.photos/id/1050/500/300" alt="">
+          <div class="card-body">
+            <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 6 MIN READ</div>
+            <h3>China's membrane technology export wave: what ASEAN buyers need to know</h3>
+            <p>Certification, warranty and after-sales considerations when sourcing from Chinese manufacturers.</p>
+            <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img class="card-img" src="https://picsum.photos/id/1069/500/300" alt="">
+          <div class="card-body">
+            <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 5 MIN READ</div>
+            <h3>The case for regional water data standards</h3>
+            <p>Why comparable utility data across ASEAN would unlock faster, better-priced investment decisions.</p>
+            <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="commercial">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="tag-pill tag-comm"><i class="fa-solid fa-handshake"></i> Commercial</span>
+        <h2 style="margin-top:10px;">Commercial</h2>
+        <p>Where Chinese suppliers meet ASEAN buyers — and where confidential deals get started.</p>
+      </div>
+    </div>
+
+    <div class="subtabs">
+      <button class="subtab-btn active" data-group="commercial" data-tab="profiles" onclick="goTo('commercial','profiles')">Company profiles</button>
+      <button class="subtab-btn" data-group="commercial" data-tab="mna" onclick="goTo('commercial','mna')">M&amp;A and partnerships</button>
+      <button class="subtab-btn" data-group="commercial" data-tab="list" onclick="goTo('commercial','list')">List your company</button>
+      <button class="subtab-btn" data-group="commercial" data-tab="listmna" onclick="goTo('commercial','listmna')">List M&amp;A opportunity</button>
+    </div>
+
+    <div class="tab-pane active" data-group="commercial" data-tab="profiles">
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:720px;">Profiles vary in depth. Verified suppliers have paid for a full English profile, brochure and video; others appear as a basic listing until they claim and complete their page.</p>
+      <div class="filter-row" id="filterRow">
+        <button class="chip active" data-filter="all">All categories</button>
+        <button class="chip" data-filter="membrane">Membrane technology</button>
+        <button class="chip" data-filter="pumps">Pumps and valves</button>
+        <button class="chip" data-filter="monitoring">Monitoring and IoT</button>
+        <button class="chip" data-filter="treatment">Treatment systems</button>
+      </div>
+      <div class="supplier-grid" id="supplierGrid"></div>
+    </div>
+
+    <div class="tab-pane" data-group="commercial" data-tab="mna">
+      <div class="mna-note"><i class="fa-solid fa-lock" style="color:var(--amber-dark);"></i> Identities are withheld until an NDA is signed with the platform. Sector, country and deal type are shown; financials are indicative ranges only.</div>
+      <div class="filter-row" id="mnaFilterRow">
+        <button class="chip active" data-filter="all">All deal types</button>
+        <button class="chip" data-filter="stake">Stake sale</button>
+        <button class="chip" data-filter="acquisition">Full acquisition</button>
+        <button class="chip" data-filter="partnership">Strategic partnership</button>
+        <button class="chip" data-filter="investment">Growth investment</button>
+      </div>
+      <div class="mna-grid" id="mnaGrid"></div>
+    </div>
+
+    <div class="tab-pane" data-group="commercial" data-tab="list">
+      <div style="background:var(--navy);border-radius:var(--radius);padding:36px;">
+        <div class="section-head" style="margin-bottom:26px;">
+          <div>
+            <h2 style="color:#fff;">Get your English profile</h2>
+            <p style="color:#AFC7D6;">Most Chinese suppliers are strong in Chinese-language marketing but invisible in English. We fix that — and buyers across Asia find you.</p>
+          </div>
+        </div>
+        <div class="price-grid price-grid-3">
+          <div class="price-card">
+            <div class="price-icon"><i class="fa-solid fa-id-card"></i></div>
+            <h3>Profile</h3>
+            <div class="price">Indicative <span>/ one-time</span></div>
+            <div class="price-note">AI-drafted, human-reviewed</div>
+            <ul>
+              <li>English company profile page</li>
+              <li>Listed in supplier directory</li>
+              <li>Mandarin QA review</li>
+            </ul>
+            <a href="#" class="btn btn-dark-ghost btn-sm" style="width:100%;justify-content:center;">Enquire</a>
+          </div>
+          <div class="price-card featured">
+            <span class="featured-badge">Most requested</span>
+            <div class="price-icon" style="background:rgba(232,163,61,.18);color:var(--amber);"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Profile + Brochure</h3>
+            <div class="price">Indicative <span>/ one-time</span></div>
+            <div class="price-note">Adds a designed, downloadable brochure</div>
+            <ul>
+              <li>Everything in Profile</li>
+              <li>AI-designed English brochure (PDF)</li>
+              <li>Product/spec sheet formatting</li>
+            </ul>
+            <a href="#" class="btn btn-amber btn-sm" style="width:100%;justify-content:center;">Enquire</a>
+          </div>
+          <div class="price-card">
+            <div class="price-icon"><i class="fa-solid fa-video"></i></div>
+            <h3>Full package</h3>
+            <div class="price">Indicative <span>/ one-time</span></div>
+            <div class="price-note">Profile, brochure and video</div>
+            <ul>
+              <li>Everything in Profile + Brochure</li>
+              <li>AI-narrated company video</li>
+              <li>Priority placement in directory</li>
+            </ul>
+            <a href="#" class="btn btn-dark-ghost btn-sm" style="width:100%;justify-content:center;">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-pane" data-group="commercial" data-tab="listmna">
+      <div style="background:var(--navy);border-radius:var(--radius);padding:36px;">
+        <div class="section-head" style="margin-bottom:26px;">
+          <div>
+            <h2 style="color:#fff;"><i class="fa-solid fa-briefcase" style="color:#8FE3D0;"></i> List an M&amp;A opportunity</h2>
+            <p style="color:#AFC7D6;">Considering a stake sale, full acquisition or strategic partnership? We package it as a confidential, anonymised teaser and put it in front of qualified buyers and investors — your identity stays protected until an NDA is signed.</p>
+          </div>
+        </div>
+        <div class="price-grid price-grid-2">
+          <div class="price-card">
+            <div class="price-icon"><i class="fa-solid fa-file-signature"></i></div>
+            <h3>Standard listing</h3>
+            <div class="price">Indicative <span>/ flat fee</span></div>
+            <div class="price-note">Self-serve, anonymised listing</div>
+            <ul>
+              <li>Anonymised teaser drafted from your submission</li>
+              <li>Listed in M&amp;A and partnerships for 90 days</li>
+              <li>Inbound enquiries forwarded after NDA</li>
+              <li>Self-managed buyer conversations</li>
+            </ul>
+            <a href="#" class="btn btn-dark-ghost btn-sm" style="width:100%;justify-content:center;">Enquire</a>
+          </div>
+          <div class="price-card featured">
+            <span class="featured-badge">Recommended</span>
+            <div class="price-icon" style="background:rgba(232,163,61,.18);color:var(--amber);"><i class="fa-solid fa-user-tie"></i></div>
+            <h3>Managed listing</h3>
+            <div class="price">Indicative <span>/ retainer + success fee</span></div>
+            <div class="price-note">Hands-on deal support, end to end</div>
+            <ul>
+              <li>Everything in Standard listing</li>
+              <li>Teaser and information memorandum drafted by our team</li>
+              <li>Targeted outreach to a matched buyer/investor shortlist</li>
+              <li>NDA circulation and introduction management</li>
+              <li>Dedicated deal advisor through to term sheet</li>
+            </ul>
+            <a href="#" class="btn btn-amber btn-sm" style="width:100%;justify-content:center;">Talk to us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background:var(--ice);">
+  <div class="wrap about">
+    <div>
+      <span class="tag-pill tag-know"><i class="fa-solid fa-circle-info"></i> Who we are</span>
+      <h2 style="margin-top:10px;">A joint venture between WaterPlus and STRAT369</h2>
+      <p>WaterPlus brings China's water-sector knowledge, technology and supplier ecosystem. STRAT369 brings Malaysian and ASEAN policy, regulatory and commercial advisory expertise.</p>
+      <p>Together, WaterX Asia is being built as the trusted layer between Chinese water technology and buyers, regulators and investors across Asia — starting with Malaysia and ASEAN.</p>
+    </div>
+    <div class="about-cards">
+      <img class="about-photo" src="https://picsum.photos/id/1015/700/360" alt="">
+      <div class="about-card"><span class="icon-circle icon-sm icon-teal"><i class="fa-solid fa-brain"></i></span><div><b>What we do —</b> curate market intelligence and turn Chinese supplier information into English-language commercial assets, at scale, using AI.</div></div>
+      <div class="about-card"><span class="icon-circle icon-sm icon-amber"><i class="fa-solid fa-eye-slash"></i></span><div><b>Why it matters —</b> Chinese suppliers are well known at home but largely invisible to English-speaking buyers across Asia.</div></div>
+      <div class="about-card"><span class="icon-circle icon-sm icon-green"><i class="fa-solid fa-shield-halved"></i></span><div><b>How we work —</b> AI handles first-pass translation, content and design; a Mandarin-speaking reviewer is the single quality gate before anything goes live.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand-name" style="color:#fff;">WaterX Asia</div>
+        <div class="brand-tag" style="color:#6E8C9B;">A WaterPlus × STRAT369 collaboration</div>
+      </div>
+      <div style="display:flex;gap:36px;flex-wrap:wrap;">
+        <div><a href="#insights">Insights</a></div>
+        <div><a href="#commercial">Commercial</a></div>
+        <div><a href="#about">About</a></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Supplier profile</h3>
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-video">
+        <div style="text-align:center;">
+          <div class="play-btn">&#9658;</div>
+          <div>AI-narrated company video (placeholder)</div>
+        </div>
+      </div>
+      <h4>Company overview</h4>
+      <p id="modalDesc">AI-drafted, Mandarin-reviewed English profile generated from the supplier's original Chinese-language materials.</p>
+      <h4>Products and capabilities</h4>
+      <p id="modalProducts">Extracted automatically from source catalogs and certifications, then reviewed for accuracy.</p>
+      <div class="modal-actions">
+        <a href="#" class="btn btn-primary btn-sm">Download brochure (PDF)</a>
+        <a href="#" class="btn btn-ghost btn-sm">Contact supplier</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+function goTo(group, tab){
+  document.querySelectorAll(`.subtab-btn[data-group="${group}"]`).forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  document.querySelectorAll(`.tab-pane[data-group="${group}"]`).forEach(p => p.classList.toggle('active', p.dataset.tab === tab));
+  document.getElementById(group).scrollIntoView({behavior:'smooth', block:'start'});
+  if(group === 'insights' && tab === 'dashboard') initDashboard();
+}
+
+let dashboardInit = false;
+function initDashboard(){
+  if(dashboardInit) return;
+  dashboardInit = true;
+
+  function renderGauge(id, value, max, benchmark, prefix, suffix, title, benchLabel){
+    const el = document.getElementById(id);
+    const pct = Math.min(100, (value/max)*100);
+    const indPct = Math.min(100, (benchmark/max)*100);
+    const fillDeg = (pct*1.8).toFixed(1);
+    const indAngle = (-90 + indPct*1.8).toFixed(1);
+    const fmt = n => n >= 1000 ? n.toLocaleString('en-US') : n;
+    el.innerHTML = `
+      <div class="gauge-legend"><span><i class="dot company"></i>ASEAN avg</span><span><i class="dot industry"></i>${benchLabel} ${prefix||''}${fmt(benchmark)}${suffix||''}</span></div>
+      <div class="gauge-shell">
+        <div class="gauge-arc" style="background:conic-gradient(from -90deg, #7C6FE0 0deg ${fillDeg}deg, #E7E5F5 ${fillDeg}deg 180deg, #E7E5F5 180deg 360deg)"></div>
+        <div class="gauge-tick" style="transform:rotate(${indAngle}deg)"></div>
+      </div>
+      <div class="gauge-value">${prefix||''}${fmt(value)}${suffix||''}</div>
+      <div class="gauge-title">${title}</div>`;
+  }
+  renderGauge('gauge1', 28.5, 60, 25, '', '%', 'Non-revenue water', 'Global benchmark');
+  renderGauge('gauge2', 0.42, 1.2, 0.55, 'USD', '', 'Avg. water tariff / m³', 'Global benchmark');
+  renderGauge('gauge3', 92, 100, 100, '', '%', 'Access to safe drinking water', 'SDG target');
+  renderGauge('gauge4', 61, 100, 70, '', '%', 'Wastewater treatment coverage', 'Global benchmark');
+
+  const countries = ['Malaysia','Indonesia','Vietnam','Philippines','Thailand','Singapore'];
+  new Chart(document.getElementById('trendChart'), {
+    data:{
+      labels: countries,
+      datasets:[
+        {type:'bar', label:'Investment pipeline (USD B)', data:[2.1,5.8,4.2,3.1,2.4,0.8], backgroundColor:'#5DCAA5', order:2, yAxisID:'y'},
+        {type:'line', label:'Non-revenue water (%)', data:[33.9,38.2,25.4,36.7,28.1,8.5], borderColor:'#534AB7', backgroundColor:'#534AB7', order:1, yAxisID:'y1', tension:.3}
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'top', labels:{boxWidth:10, font:{size:11}}}},
+      scales:{
+        y:{title:{display:true,text:'Investment (USD billion)',font:{size:11}}, grid:{color:'#EEF3F5'}},
+        y1:{position:'right', grid:{drawOnChartArea:false}, title:{display:true,text:'Non-revenue water (%)',font:{size:11}}}
+      }
+    }
+  });
+
+  function donut(id, labels, data, colors){
+    new Chart(document.getElementById(id), {
+      type:'doughnut',
+      data:{labels, datasets:[{data, backgroundColor:colors, borderWidth:0}]},
+      options:{plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:10.5}}}}, cutout:'62%'}
+    });
+  }
+  donut('incomeDonut', ['Water supply','Wastewater treatment','Digital and smart water','Desalination'], [38,34,16,12], ['#5DCAA5','#F0997B','#7F77DD','#378ADD']);
+  donut('expenseDonut', countries, [11,32,23,17,13,4], ['#5DCAA5','#F0997B','#7F77DD','#378ADD','#EF9F27','#D4537E']);
+}
+
+const catIcon = {membrane:"fa-filter", pumps:"fa-gears", monitoring:"fa-satellite-dish", treatment:"fa-industry"};
+const suppliers = [
+  {name:"Zhejiang Clearflow Membrane Co.", loc:"Hangzhou, Zhejiang", cat:"membrane", catLabel:"Membrane technology", initials:"ZC", tier:"full", img:"https://picsum.photos/id/1078/400/240",
+   desc:"Ultrafiltration and RO membrane manufacturer supplying municipal and industrial plants across China.",
+   products:"UF membranes, RO elements, membrane housings — NSF and CE certified."},
+  {name:"Suzhou AquaTech Pumps", loc:"Suzhou, Jiangsu", cat:"pumps", catLabel:"Pumps and valves", initials:"SA", tier:"full", img:"https://picsum.photos/id/1081/400/240",
+   desc:"Manufacturer of centrifugal and submersible pumps for water and wastewater applications.",
+   products:"Submersible pumps, control valves, variable-speed drive packages."},
+  {name:"Qingdao SmartFlow IoT", loc:"Qingdao, Shandong", cat:"monitoring", catLabel:"Monitoring and IoT", initials:"QS", tier:"full", img:"https://picsum.photos/id/1074/400/240",
+   desc:"IoT sensors and dashboards for remote monitoring of water quality and network pressure.",
+   products:"Smart flow meters, water-quality sensors, cloud monitoring dashboard."},
+  {name:"Guangzhou Puretech Systems", loc:"Guangzhou, Guangdong", cat:"treatment", catLabel:"Treatment systems", initials:"GP", tier:"full", img:"https://picsum.photos/id/1084/400/240",
+   desc:"Turnkey containerised treatment systems for decentralised municipal and industrial use.",
+   products:"Containerised MBR plants, sludge dewatering units, disinfection systems."},
+  {name:"Ningbo BlueCore Filtration", loc:"Ningbo, Zhejiang", cat:"membrane", catLabel:"Membrane technology", initials:"NB", tier:"basic",
+   desc:"Listing not yet completed — category and location only, pending supplier sign-up.",
+   products:"Not yet published."},
+  {name:"Chengdu Hydro Valve Works", loc:"Chengdu, Sichuan", cat:"pumps", catLabel:"Pumps and valves", initials:"CH", tier:"basic",
+   desc:"Listing not yet completed — category and location only, pending supplier sign-up.",
+   products:"Not yet published."}
+];
+
+const grid = document.getElementById('supplierGrid');
+function renderSuppliers(filter){
+  grid.innerHTML = '';
+  suppliers.filter(s => filter === 'all' || s.cat === filter).forEach(s => {
+    const card = document.createElement('div');
+    const basic = s.tier === 'basic';
+    card.className = 'supplier-card' + (basic ? ' basic' : '');
+    card.innerHTML = `
+      ${basic
+        ? `<div class="supplier-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--ice);color:var(--muted);"><i class="fa-solid ${catIcon[s.cat]}" style="font-size:28px;"></i></div>`
+        : `<img class="supplier-thumb" src="${s.img}" alt="">`}
+      <div class="supplier-top">
+        <div class="supplier-logo${basic ? ' basic' : ''}">${s.initials}</div>
+        <div>
+          <div class="supplier-name">${s.name}</div>
+          <div class="supplier-loc"><i class="fa-solid fa-location-dot" style="margin-right:4px;"></i>${s.loc}</div>
+        </div>
+      </div>
+      <div class="badges">
+        ${basic ? '<span class="badge badge-basic"><i class="fa-solid fa-circle-exclamation"></i> Basic listing</span>' : '<span class="badge badge-verified"><i class="fa-solid fa-circle-check"></i> Verified</span><span class="badge badge-en">EN profile</span>'}
+        <span class="badge badge-cat"><i class="fa-solid ${catIcon[s.cat]}"></i> ${s.catLabel}</span>
+      </div>
+      <div class="supplier-desc">${s.desc}</div>
+      <div class="card-foot">
+        ${basic
+          ? `<button class="btn btn-primary btn-sm" onclick="goTo('commercial','list')">Claim this profile</button>`
+          : `<button class="btn btn-primary btn-sm view-profile">View profile</button><a href="#" class="btn btn-ghost btn-sm"><i class="fa-solid fa-file-pdf"></i> Brochure</a>`}
+      </div>`;
+    if(!basic) card.querySelector('.view-profile').addEventListener('click', () => openModal(s));
+    grid.appendChild(card);
+  });
+}
+renderSuppliers('all');
+document.getElementById('filterRow').addEventListener('click', e => {
+  if(!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('#filterRow .chip').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  renderSuppliers(e.target.dataset.filter);
+});
+
+const overlay = document.getElementById('modalOverlay');
+function openModal(s){
+  document.getElementById('modalTitle').textContent = s.name;
+  document.getElementById('modalDesc').textContent = s.desc;
+  document.getElementById('modalProducts').textContent = s.products;
+  overlay.classList.add('open');
+}
+document.getElementById('modalClose').addEventListener('click', () => overlay.classList.remove('open'));
+overlay.addEventListener('click', e => { if(e.target === overlay) overlay.classList.remove('open'); });
+
+const dealIcon = {stake:{i:"fa-chart-pie",c:"icon-navy"}, acquisition:{i:"fa-building-circle-check",c:"icon-coral"}, partnership:{i:"fa-people-arrows",c:"icon-green"}, investment:{i:"fa-seedling",c:"icon-amber"}};
+const mnaDeals = [
+  {country:"Malaysia", type:"stake", typeLabel:"Stake sale", title:"Pipe and fittings distributor — minority stake", teaser:"Established distributor of ductile iron and HDPE pipe systems to municipal contractors is considering a 30–49% stake sale to fund regional expansion.", meta:["Revenue RM40–60M","Peninsular Malaysia","Founder to retain control"]},
+  {country:"Indonesia", type:"acquisition", typeLabel:"Full acquisition", title:"Municipal water treatment EPC contractor", teaser:"Full sale of an EPC contractor with a 15-year track record on municipal treatment plants, as the founding shareholders plan retirement.", meta:["Revenue USD15–25M","Java-wide operations","Order book disclosed post-NDA"]},
+  {country:"Vietnam", type:"partnership", typeLabel:"Strategic partnership", title:"Membrane component assembler — JV sought", teaser:"Local assembler with an established distribution network is seeking a strategic partnership or joint venture with a Chinese membrane technology principal.", meta:["Distribution in 20+ provinces","Existing factory capacity","Technology transfer preferred"]},
+  {country:"Philippines", type:"stake", typeLabel:"Stake sale", title:"Bulk water supply concession holder", teaser:"Concession holder for a provincial bulk water supply agreement is offering a minority stake of up to 40% to fund network expansion.", meta:["20-year concession","Stable regulated tariff","Up to 40% offered"]},
+  {country:"Thailand", type:"acquisition", typeLabel:"Full acquisition", title:"Water treatment chemicals distributor", teaser:"Distributor holding exclusive regional agreements with two international chemical principals is open to a full acquisition by a strategic buyer.", meta:["Revenue THB300–450M","Exclusive agreements in place","National distribution network"]},
+  {country:"Singapore", type:"investment", typeLabel:"Growth investment", title:"Smart water metering and IoT startup", teaser:"Series A-stage startup with deployed smart metering pilots is seeking a strategic investor, with technology licensing potential for regional expansion.", meta:["Live pilots in 3 markets","Series A round open","Licensing option available"]}
+];
+const mnaGrid = document.getElementById('mnaGrid');
+function renderMna(filter){
+  mnaGrid.innerHTML = '';
+  mnaDeals.filter(d => filter === 'all' || d.type === filter).forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'mna-card';
+    const di = dealIcon[d.type];
+    card.innerHTML = `
+      <div class="mna-icon-wrap"><span class="icon-circle ${di.c}"><i class="fa-solid ${di.i}"></i></span></div>
+      <div class="mna-top">
+        <span class="mna-country"><i class="fa-solid fa-location-dot"></i> ${d.country}</span>
+        <span class="deal-badge badge-${d.type}">${d.typeLabel}</span>
+      </div>
+      <h3>${d.title}</h3>
+      <div class="mna-teaser">${d.teaser}</div>
+      <div class="mna-meta">${d.meta.map(m => `<span>${m}</span>`).join('')}</div>
+      <a href="#" class="btn btn-ghost btn-sm" style="justify-content:center;"><i class="fa-solid fa-lock"></i> Request teaser (NDA)</a>`;
+    mnaGrid.appendChild(card);
+  });
+}
+renderMna('all');
+document.getElementById('mnaFilterRow').addEventListener('click', e => {
+  if(!e.target.classList.contains('chip')) return;
+  document.querySelectorAll('#mnaFilterRow .chip').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  renderMna(e.target.dataset.filter);
+});
+</script>
+
+</body>
+</html>
