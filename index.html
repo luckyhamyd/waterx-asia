@@ -96,11 +96,32 @@
   .status-open{background:#E3F3EA;color:#1E7A46;}
   .status-ppp{background:#FBEEDD;color:var(--amber-dark);}
   .status-feas{background:#DCEEF5;color:#0B4A66;}
-  .opp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:40px;}
+  .status-prequal{background:#EEEDFE;color:#3C3489;}
+  .status-awarded{background:#DFF3EC;color:#0A6B4F;}
+  .opp-list{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+  .opp-phase-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
+  .opp-phase-card{background:#fff;border:1px solid var(--ice-border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;}
+  .opp-phase-count{font-family:'Poppins';font-weight:700;font-size:19px;color:var(--navy);line-height:1;}
+  .opp-phase-label{font-size:11px;color:var(--muted);margin-top:3px;}
+  .opp-select{padding:9px 14px;border-radius:10px;border:1.5px solid var(--ice-border);background:#fff;font-size:13.5px;color:var(--text-dark);font-family:'Inter';}
+  .opp-search{flex:1;min-width:200px;padding:9px 14px;border-radius:10px;border:1.5px solid var(--ice-border);font-size:13.5px;font-family:'Inter';}
+  .opp-search:focus,.opp-select:focus{outline:none;border-color:var(--primary);}
+  .opp-pagination{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px;}
+  .opp-pagination button:disabled{opacity:.4;cursor:default;}
+  .scorecard-table{width:100%;border-collapse:collapse;font-size:12.6px;}
+  .scorecard-table th{text-align:left;font-size:10.8px;font-weight:600;color:var(--muted);letter-spacing:.2px;padding:6px 8px;border-bottom:1.5px solid var(--ice-border);}
+  .scorecard-table td{padding:8px 8px;border-bottom:1px solid var(--ice-border);}
+  .scorecard-table tr:last-child td{border-bottom:none;}
+  .scorecard-table td.sc-country{font-weight:600;color:var(--navy);}
+  .mini-bar{height:6px;border-radius:4px;background:var(--ice);overflow:hidden;width:100%;}
+  .mini-bar span{display:block;height:100%;background:var(--secondary);border-radius:4px;}
+  .trend-badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:6px;}
+  .trend-up{background:#E3F3EA;color:#1E7A46;}
+  .trend-down{background:#FAECE7;color:#B0512F;}
 
   .dash-banner{background:#fff;border:1px solid var(--ice-border);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--muted);margin-bottom:26px;display:flex;align-items:center;gap:10px;}
   .dash-banner b{color:var(--navy);}
-  .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:26px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:26px;}
   .kpi-card{background:#fff;border:1px solid var(--ice-border);border-radius:12px;padding:16px;text-align:center;}
   .kpi-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
   .kpi-value{font-family:'Poppins';font-weight:700;font-size:20px;color:var(--navy);}
@@ -281,7 +302,10 @@
       <a href="#commercial">Commercial</a>
       <a href="#about">About</a>
     </nav>
-    <a href="javascript:void(0)" onclick="goTo('commercial','list')" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> List your company</a>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+      <a href="javascript:void(0)" onclick="goTo('commercial','list')" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> List your company</a>
+    </div>
   </div>
 </header>
 
@@ -290,7 +314,7 @@
     <div class="wrap">
       <span class="eyebrow"><i class="fa-solid fa-droplet"></i> China water tech, translated for Asia</span>
       <h1>One portal for <span>water-sector intelligence</span> and <span>commercial opportunity</span> across ASEAN</h1>
-      <p class="lead">Market data, tenders and thought leadership on one side. Verified Chinese supplier profiles and confidential M&amp;A opportunities on the other.</p>
+      <p class="lead">Market data, tenders and thought leadership on one side. Supplier profiles and confidential M&amp;A opportunities on the other.</p>
       <div class="stat-strip">
         <div><div class="n">6</div><div class="l">ASEAN markets covered</div></div>
         <div><div class="n">180+</div><div class="l">Supplier profiles</div></div>
@@ -338,18 +362,31 @@
     </div>
 
     <div class="tab-pane active" data-group="insights" data-tab="opportunities">
-      <h3 class="subhead">Priority opportunities this quarter</h3>
-      <p style="font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:720px;">Tenders, PPP screenings and project leads, sourced and screened from public procurement notices across ASEAN.</p>
-      <div class="opp-list">
-        <div class="opp-row head"><span></span><span>Country</span><span>Opportunity</span><span>Segment</span><span>Est. value</span><span>Stage</span></div>
-        <div class="opp-row"><span class="opp-icon icon-teal"><i class="fa-solid fa-droplet"></i></span><span class="opp-country">Malaysia</span><span>Selangor 40 MLD membrane upgrade</span><span>Water supply</span><span class="opp-value">USD85M</span><span class="opp-status status-open">Tender open</span></div>
-        <div class="opp-row"><span class="opp-icon icon-navy"><i class="fa-solid fa-water"></i></span><span class="opp-country">Indonesia</span><span>Jakarta Bay desalination PPP</span><span>Desalination</span><span class="opp-value">USD310M</span><span class="opp-status status-ppp">PPP screening</span></div>
-        <div class="opp-row"><span class="opp-icon icon-coral"><i class="fa-solid fa-recycle"></i></span><span class="opp-country">Vietnam</span><span>Mekong Delta wastewater network</span><span>Wastewater</span><span class="opp-value">USD240M</span><span class="opp-status status-feas">Feasibility</span></div>
-        <div class="opp-row"><span class="opp-icon icon-teal"><i class="fa-solid fa-droplet"></i></span><span class="opp-country">Philippines</span><span>Metro Cebu bulk water supply</span><span>Water supply</span><span class="opp-value">USD150M</span><span class="opp-status status-ppp">PPP screening</span></div>
-        <div class="opp-row"><span class="opp-icon icon-amber"><i class="fa-solid fa-bolt"></i></span><span class="opp-country">Thailand</span><span>Eastern Seaboard industrial water reuse</span><span>Digital and reuse</span><span class="opp-value">USD60M</span><span class="opp-status status-open">Tender open</span></div>
-        <div class="opp-row"><span class="opp-icon icon-amber"><i class="fa-solid fa-microchip"></i></span><span class="opp-country">Singapore</span><span>NEWater smart monitoring upgrade</span><span>Digital and smart water</span><span class="opp-value">USD25M</span><span class="opp-status status-feas">Feasibility</span></div>
+      <h3 class="subhead">Opportunities across the water industry value chain</h3>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:780px;">Tenders, PPP screenings, project leads and advisory mandates — sourced across every stage of the value chain, from raw-water abstraction through to wastewater reclamation, plus the equipment, monitoring, digital and advisory layers that support them.</p>
+
+      <div class="opp-phase-strip" id="oppPhaseStrip"></div>
+
+      <div class="filter-row" style="align-items:center;">
+        <select id="oppCountryFilter" class="opp-select"><option value="all">All countries</option></select>
+        <select id="oppSegFilter" class="opp-select"><option value="all">All sub-segments</option></select>
+        <input type="text" id="oppSearch" class="opp-search" placeholder="Search opportunities, countries, sub-segments…">
       </div>
-      <p style="font-size:12px;color:var(--muted);">Refreshed weekly as part of the platform's market-intelligence feed.</p>
+
+      <p id="oppCount" style="font-size:12.5px;color:var(--muted);margin-bottom:12px;"></p>
+
+      <div class="opp-list">
+        <div class="opp-row head"><span></span><span>Country</span><span>Opportunity</span><span>Sub-segment</span><span>Est. value</span><span>Stage</span></div>
+        <div id="oppList"></div>
+      </div>
+
+      <div class="opp-pagination">
+        <button id="oppPrev" class="btn btn-ghost btn-sm"><i class="fa-solid fa-arrow-left"></i> Prev</button>
+        <span id="oppPageInfo" style="font-size:13px;color:var(--muted);"></span>
+        <button id="oppNext" class="btn btn-ghost btn-sm">Next <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+      <p style="font-size:12px;color:var(--muted);margin-top:16px;">Refreshed weekly as part of the platform's market-intelligence feed. Covers the full value chain: water supply, customer end-use, wastewater management, and cross-cutting equipment, monitoring, digital and advisory services.</p>
     </div>
 
     <div class="tab-pane" data-group="insights" data-tab="news">
@@ -403,6 +440,30 @@
             <p>Smart metering and remote monitoring demand climbs as utilities digitise leak detection.</p>
           </div>
         </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1053/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-teal"><i class="fa-solid fa-wheat-awn"></i></span><span class="meta">AGRICULTURE · VIETNAM · 15 Jul 2026</span></div>
+            <h3>Mekong Delta irrigation modernisation programme approved</h3>
+            <p>USD180M programme covers drip and precision irrigation across four provinces, with equipment tenders expected Q4.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1080/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-navy"><i class="fa-solid fa-user-tie"></i></span><span class="meta">ADVISORY · PHILIPPINES · 12 Jul 2026</span></div>
+            <h3>Manila mandates independent PPP structuring advisory for new tenders</h3>
+            <p>New procurement rule requires an independent advisor on all water-sector PPPs above USD20M.</p>
+          </div>
+        </div>
+        <div class="insight-card">
+          <img class="card-img" src="https://picsum.photos/id/1041/500/300" alt="">
+          <div class="card-body">
+            <div class="cat-icon-row"><span class="icon-circle icon-sm icon-coral"><i class="fa-solid fa-flask"></i></span><span class="meta">TREATMENT · SINGAPORE · 9 Jul 2026</span></div>
+            <h3>PUB pilots tertiary membrane bioreactor at NEWater plant</h3>
+            <p>Pilot targets a 15% energy-intensity reduction versus current tertiary treatment trains.</p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -414,6 +475,8 @@
         <div class="kpi-card"><div class="icon-circle icon-coral"><i class="fa-solid fa-droplet-slash"></i></div><div><div class="kpi-label">Avg. non-revenue water</div><div class="kpi-value">28.5%</div></div></div>
         <div class="kpi-card"><div class="icon-circle icon-amber"><i class="fa-solid fa-file-contract"></i></div><div><div class="kpi-label">Active PPP / tenders</div><div class="kpi-value">214</div></div></div>
         <div class="kpi-card"><div class="icon-circle icon-navy"><i class="fa-solid fa-tags"></i></div><div><div class="kpi-label">Avg. water tariff</div><div class="kpi-value">USD0.42/m³</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-coral"><i class="fa-solid fa-flask"></i></div><div><div class="kpi-label">Wastewater treated</div><div class="kpi-value">61%</div></div></div>
+        <div class="kpi-card"><div class="icon-circle icon-green"><i class="fa-solid fa-industry"></i></div><div><div class="kpi-label">Active suppliers tracked</div><div class="kpi-value">340+</div></div></div>
       </div>
       <div class="dash-grid">
         <div class="dash-card">
@@ -447,6 +510,15 @@
           </div>
         </div>
       </div>
+      <div class="dash-grid" style="grid-template-columns:1fr;">
+        <div class="dash-card">
+          <h3><i class="fa-solid fa-ranking-star"></i> Country scorecard — six ASEAN markets</h3>
+          <table class="scorecard-table">
+            <thead><tr><th>Country</th><th>Investment pipeline</th><th>Non-revenue water</th><th>Wastewater coverage</th><th>Avg. tariff</th><th>YoY tender activity</th></tr></thead>
+            <tbody id="scorecardBody"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
 
     <div class="tab-pane" data-group="insights" data-tab="leadership">
@@ -475,6 +547,24 @@
             <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 5 MIN READ</div>
             <h3>The case for regional water data standards</h3>
             <p>Why comparable utility data across ASEAN would unlock faster, better-priced investment decisions.</p>
+            <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img class="card-img" src="https://picsum.photos/id/1039/500/300" alt="">
+          <div class="card-body">
+            <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 7 MIN READ</div>
+            <h3>Mapping the full water value chain: where the next decade of capital will flow</h3>
+            <p>From source abstraction to circular reuse — a segment-by-segment view of where ASEAN capital and Chinese technology are converging.</p>
+            <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="article-card">
+          <img class="card-img" src="https://picsum.photos/id/1059/500/300" alt="">
+          <div class="card-body">
+            <div class="meta"><i class="fa-solid fa-clock"></i> THOUGHT LEADERSHIP · 6 MIN READ</div>
+            <h3>Smart water and IoT: the quiet enabler layer worth watching</h3>
+            <p>Digitalisation spend is small relative to hard infrastructure — but it is the fastest-growing sub-segment in the value chain.</p>
             <a href="#" class="btn btn-ghost btn-sm">Read article <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </div>
@@ -759,6 +849,15 @@ const suppliers = [
    products:"Not yet published."},
   {name:"Chengdu Hydro Valve Works", loc:"Chengdu, Sichuan", cat:"pumps", catLabel:"Pumps and valves", initials:"CH", tier:"basic",
    desc:"Listing not yet completed — category and location only, pending supplier sign-up.",
+   products:"Not yet published."},
+  {name:"Wuxi Precision Filtration Co.", loc:"Wuxi, Jiangsu", cat:"membrane", catLabel:"Membrane technology", initials:"WP", tier:"full", img:"https://picsum.photos/id/1082/400/240",
+   desc:"Specialist in nanofiltration and industrial-grade RO systems for high-purity process water.",
+   products:"Nanofiltration modules, industrial RO skids, pre-treatment cartridge filters."},
+  {name:"Foshan EcoTreat Systems", loc:"Foshan, Guangdong", cat:"treatment", catLabel:"Treatment systems", initials:"FE", tier:"full", img:"https://picsum.photos/id/1080/400/240",
+   desc:"MBR and SBR package plant manufacturer serving municipal and industrial wastewater clients.",
+   products:"Package MBR/SBR plants, sludge thickening units, odour-control systems."},
+  {name:"Xi'an SkyGrid Analytics", loc:"Xi'an, Shaanxi", cat:"monitoring", catLabel:"Monitoring and IoT", initials:"XS", tier:"basic",
+   desc:"Listing not yet completed — category and location only, pending supplier sign-up.",
    products:"Not yet published."}
 ];
 
@@ -819,7 +918,10 @@ const mnaDeals = [
   {country:"Vietnam", type:"partnership", typeLabel:"Strategic partnership", title:"Membrane component assembler — JV sought", teaser:"Local assembler with an established distribution network is seeking a strategic partnership or joint venture with a Chinese membrane technology principal.", meta:["Distribution in 20+ provinces","Existing factory capacity","Technology transfer preferred"]},
   {country:"Philippines", type:"stake", typeLabel:"Stake sale", title:"Bulk water supply concession holder", teaser:"Concession holder for a provincial bulk water supply agreement is offering a minority stake of up to 40% to fund network expansion.", meta:["20-year concession","Stable regulated tariff","Up to 40% offered"]},
   {country:"Thailand", type:"acquisition", typeLabel:"Full acquisition", title:"Water treatment chemicals distributor", teaser:"Distributor holding exclusive regional agreements with two international chemical principals is open to a full acquisition by a strategic buyer.", meta:["Revenue THB300–450M","Exclusive agreements in place","National distribution network"]},
-  {country:"Singapore", type:"investment", typeLabel:"Growth investment", title:"Smart water metering and IoT startup", teaser:"Series A-stage startup with deployed smart metering pilots is seeking a strategic investor, with technology licensing potential for regional expansion.", meta:["Live pilots in 3 markets","Series A round open","Licensing option available"]}
+  {country:"Singapore", type:"investment", typeLabel:"Growth investment", title:"Smart water metering and IoT startup", teaser:"Series A-stage startup with deployed smart metering pilots is seeking a strategic investor, with technology licensing potential for regional expansion.", meta:["Live pilots in 3 markets","Series A round open","Licensing option available"]},
+  {country:"Malaysia", type:"partnership", typeLabel:"Strategic partnership", title:"Water testing laboratory network — technology tie-up sought", teaser:"Accredited laboratory network with national coverage is seeking a technology partnership to add real-time digital analytics to its testing services.", meta:["12 labs nationwide","ISO-accredited","Digital upgrade budget approved"]},
+  {country:"Indonesia", type:"stake", typeLabel:"Stake sale", title:"Industrial water reuse operator — growth-stage stake", teaser:"Operator of industrial water-reuse facilities serving export manufacturing zones is offering a growth-stage minority stake to fund a second facility.", meta:["2 facilities operating","Anchor tenants secured","Up to 35% offered"]},
+  {country:"Thailand", type:"investment", typeLabel:"Growth investment", title:"Engineering & advisory firm — expansion capital sought", teaser:"Regional water-sector engineering and PPP-advisory firm is raising expansion capital to scale into new ASEAN markets.", meta:["25-person advisory team","Track record on 8 PPPs","Regional expansion plan ready"]}
 ];
 const mnaGrid = document.getElementById('mnaGrid');
 function renderMna(filter){
@@ -848,6 +950,169 @@ document.getElementById('mnaFilterRow').addEventListener('click', e => {
   e.target.classList.add('active');
   renderMna(e.target.dataset.filter);
 });
+
+/* ---- Opportunities: full value-chain taxonomy, filters, search, pagination ---- */
+const oppPhases = {
+  supply: "Water Supply (Upstream–Midstream)",
+  enduse: "Customer / End-Use",
+  wastewater: "Wastewater Management",
+  enablers: "Cross-Cutting Enablers"
+};
+const oppSubsegments = {
+  sourcing:      {label:"Source & Abstraction",                phase:"supply",     icon:"fa-droplet",               color:"icon-teal"},
+  treatment:     {label:"Purification & Treatment",             phase:"supply",     icon:"fa-filter",                color:"icon-navy"},
+  transmission:  {label:"Bulk Transmission & Storage",          phase:"supply",     icon:"fa-warehouse",             color:"icon-amber"},
+  distribution:  {label:"Local Distribution Networks",          phase:"supply",     icon:"fa-network-wired",         color:"icon-coral"},
+  agriculture:   {label:"Agricultural Consumption",             phase:"enduse",     icon:"fa-wheat-awn",             color:"icon-green"},
+  industrial:    {label:"Industrial & Energy Production",       phase:"enduse",     icon:"fa-industry",              color:"icon-navy"},
+  municipal:     {label:"Municipal & Residential Use",          phase:"enduse",     icon:"fa-house-chimney",         color:"icon-teal"},
+  collection:    {label:"Collection & Sewerage Infrastructure", phase:"wastewater", icon:"fa-toilet",                color:"icon-coral"},
+  wwtreatment:   {label:"Wastewater Treatment & Processing",    phase:"wastewater", icon:"fa-flask",                 color:"icon-amber"},
+  reclamation:   {label:"Disposal, Reclamation & Recycling",    phase:"wastewater", icon:"fa-recycle",               color:"icon-green"},
+  equipment:     {label:"Equipment Manufacturing",              phase:"enablers",   icon:"fa-gears",                 color:"icon-navy"},
+  monitoring:    {label:"Testing, Monitoring & Analytics",      phase:"enablers",   icon:"fa-magnifying-glass-chart",color:"icon-teal"},
+  digital:       {label:"Digitalization & Smart Water (IoT)",   phase:"enablers",   icon:"fa-microchip",             color:"icon-amber"},
+  advisory:      {label:"Engineering & Advisory Services",      phase:"enablers",   icon:"fa-user-tie",              color:"icon-coral"}
+};
+const oppCountries = ["Malaysia","Indonesia","Vietnam","Philippines","Thailand","Singapore"];
+const oppStatusClass = {"Tender open":"status-open","PPP screening":"status-ppp","Feasibility":"status-feas","Pre-qualification":"status-prequal","Awarded":"status-awarded"};
+
+const opportunities = [
+  {country:"Malaysia", seg:"sourcing", title:"Pahang river intake capacity expansion study", value:"USD18M", stage:"Feasibility"},
+  {country:"Indonesia", seg:"sourcing", title:"West Java aquifer recharge & groundwater licensing programme", value:"USD22M", stage:"Pre-qualification"},
+  {country:"Thailand", seg:"sourcing", title:"Eastern Seaboard seawater desalination intake works", value:"USD95M", stage:"PPP screening"},
+
+  {country:"Malaysia", seg:"treatment", title:"Selangor 40 MLD membrane upgrade", value:"USD85M", stage:"Tender open"},
+  {country:"Indonesia", seg:"treatment", title:"Jakarta Bay desalination PPP", value:"USD310M", stage:"PPP screening"},
+  {country:"Philippines", seg:"treatment", title:"Metro Manila advanced filtration retrofit", value:"USD40M", stage:"Feasibility"},
+
+  {country:"Vietnam", seg:"transmission", title:"Mekong Delta bulk water transmission main", value:"USD130M", stage:"PPP screening"},
+  {country:"Thailand", seg:"transmission", title:"Bangkok metropolitan reservoir balancing tanks", value:"USD28M", stage:"Tender open"},
+  {country:"Singapore", seg:"transmission", title:"PUB regional transmission redundancy programme", value:"USD45M", stage:"Awarded"},
+
+  {country:"Philippines", seg:"distribution", title:"Metro Cebu bulk water supply", value:"USD150M", stage:"PPP screening"},
+  {country:"Indonesia", seg:"distribution", title:"Surabaya non-revenue water pipe replacement", value:"USD65M", stage:"Tender open"},
+  {country:"Malaysia", seg:"distribution", title:"Johor smart pressure-management rollout", value:"USD12M", stage:"Feasibility"},
+
+  {country:"Vietnam", seg:"agriculture", title:"Mekong Delta irrigation modernisation programme", value:"USD180M", stage:"PPP screening"},
+  {country:"Thailand", seg:"agriculture", title:"Northeastern Thailand farm-level drip irrigation rollout", value:"USD35M", stage:"Pre-qualification"},
+  {country:"Indonesia", seg:"agriculture", title:"Central Java rice-belt water allocation upgrade", value:"USD50M", stage:"Feasibility"},
+
+  {country:"Thailand", seg:"industrial", title:"Eastern Seaboard industrial water reuse", value:"USD60M", stage:"Tender open"},
+  {country:"Singapore", seg:"industrial", title:"Jurong Island industrial cooling water network", value:"USD75M", stage:"Awarded"},
+  {country:"Vietnam", seg:"industrial", title:"Binh Duong industrial park water recycling loop", value:"USD30M", stage:"Feasibility"},
+
+  {country:"Indonesia", seg:"municipal", title:"Jakarta municipal tariff & metering reform", value:"USD20M", stage:"Pre-qualification"},
+  {country:"Philippines", seg:"municipal", title:"Davao City household connection expansion", value:"USD42M", stage:"Tender open"},
+  {country:"Malaysia", seg:"municipal", title:"Kuala Lumpur high-rise water pressure upgrade", value:"USD15M", stage:"Feasibility"},
+
+  {country:"Vietnam", seg:"collection", title:"Mekong Delta wastewater network", value:"USD240M", stage:"Feasibility"},
+  {country:"Thailand", seg:"collection", title:"Chiang Mai sewer network extension", value:"USD38M", stage:"Tender open"},
+  {country:"Indonesia", seg:"collection", title:"Bandung combined sewer separation programme", value:"USD55M", stage:"PPP screening"},
+
+  {country:"Philippines", seg:"wwtreatment", title:"Metro Manila tertiary treatment upgrade", value:"USD90M", stage:"PPP screening"},
+  {country:"Malaysia", seg:"wwtreatment", title:"Penang centralised WWTP expansion", value:"USD70M", stage:"Tender open"},
+  {country:"Singapore", seg:"wwtreatment", title:"NEWater tertiary membrane bioreactor upgrade", value:"USD48M", stage:"Awarded"},
+
+  {country:"Singapore", seg:"reclamation", title:"NEWater smart monitoring upgrade", value:"USD25M", stage:"Feasibility"},
+  {country:"Thailand", seg:"reclamation", title:"Eastern Seaboard reclaimed water for industrial reuse", value:"USD32M", stage:"Pre-qualification"},
+  {country:"Indonesia", seg:"reclamation", title:"Bali reclaimed water for hospitality irrigation", value:"USD14M", stage:"Feasibility"},
+
+  {country:"Vietnam", seg:"equipment", title:"National pump & valve localisation incentive programme", value:"USD8M", stage:"Pre-qualification"},
+  {country:"Malaysia", seg:"equipment", title:"Membrane component local assembly facility", value:"USD16M", stage:"Feasibility"},
+  {country:"Philippines", seg:"equipment", title:"National pipe & fittings supply framework", value:"USD26M", stage:"Tender open"},
+
+  {country:"Thailand", seg:"monitoring", title:"National water-quality laboratory network upgrade", value:"USD10M", stage:"Feasibility"},
+  {country:"Indonesia", seg:"monitoring", title:"River basin real-time monitoring sensor rollout", value:"USD18M", stage:"PPP screening"},
+  {country:"Singapore", seg:"monitoring", title:"PUB advanced analytics & digital twin programme", value:"USD22M", stage:"Awarded"},
+
+  {country:"Singapore", seg:"digital", title:"PUB citywide smart meter rollout", value:"USD35M", stage:"Tender open"},
+  {country:"Malaysia", seg:"digital", title:"Selangor SCADA modernisation programme", value:"USD20M", stage:"Feasibility"},
+  {country:"Vietnam", seg:"digital", title:"Ho Chi Minh City leak-detection IoT pilot", value:"USD9M", stage:"Pre-qualification"},
+
+  {country:"Philippines", seg:"advisory", title:"National water-sector PPP structuring advisory", value:"USD5M", stage:"Feasibility"},
+  {country:"Indonesia", seg:"advisory", title:"Jakarta capital-project delivery advisory mandate", value:"USD7M", stage:"Tender open"},
+  {country:"Thailand", seg:"advisory", title:"Regional utility environmental compliance audit programme", value:"USD4M", stage:"Awarded"}
+];
+
+function renderOppPhaseStrip(){
+  const counts = {}; Object.keys(oppPhases).forEach(p => counts[p] = 0);
+  opportunities.forEach(o => counts[oppSubsegments[o.seg].phase]++);
+  const icons = {supply:"fa-droplet", enduse:"fa-city", wastewater:"fa-recycle", enablers:"fa-toolbox"};
+  const colors = {supply:"icon-teal", enduse:"icon-amber", wastewater:"icon-coral", enablers:"icon-navy"};
+  document.getElementById('oppPhaseStrip').innerHTML = Object.keys(oppPhases).map(p => `
+    <div class="opp-phase-card">
+      <span class="icon-circle icon-sm ${colors[p]}"><i class="fa-solid ${icons[p]}"></i></span>
+      <div><div class="opp-phase-count">${counts[p]}</div><div class="opp-phase-label">${oppPhases[p]}</div></div>
+    </div>`).join('');
+}
+
+function initOppFilters(){
+  const countrySel = document.getElementById('oppCountryFilter');
+  oppCountries.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; countrySel.appendChild(o); });
+  const segSel = document.getElementById('oppSegFilter');
+  Object.keys(oppPhases).forEach(phase => {
+    const og = document.createElement('optgroup'); og.label = oppPhases[phase];
+    Object.entries(oppSubsegments).filter(([k,v]) => v.phase === phase).forEach(([k,v]) => {
+      const o = document.createElement('option'); o.value = k; o.textContent = v.label; og.appendChild(o);
+    });
+    segSel.appendChild(og);
+  });
+}
+
+let oppPage = 1;
+const OPP_PER_PAGE = 8;
+function renderOpportunities(){
+  const country = document.getElementById('oppCountryFilter').value;
+  const seg = document.getElementById('oppSegFilter').value;
+  const q = document.getElementById('oppSearch').value.trim().toLowerCase();
+  const filtered = opportunities.filter(o =>
+    (country === 'all' || o.country === country) &&
+    (seg === 'all' || o.seg === seg) &&
+    (!q || o.title.toLowerCase().includes(q) || o.country.toLowerCase().includes(q) || oppSubsegments[o.seg].label.toLowerCase().includes(q))
+  );
+  const totalPages = Math.max(1, Math.ceil(filtered.length / OPP_PER_PAGE));
+  if(oppPage > totalPages) oppPage = totalPages;
+  const start = (oppPage - 1) * OPP_PER_PAGE;
+  const pageItems = filtered.slice(start, start + OPP_PER_PAGE);
+  document.getElementById('oppList').innerHTML = pageItems.map(o => {
+    const sub = oppSubsegments[o.seg];
+    return `<div class="opp-row"><span class="opp-icon ${sub.color}"><i class="fa-solid ${sub.icon}"></i></span><span class="opp-country">${o.country}</span><span>${o.title}</span><span>${sub.label}</span><span class="opp-value">${o.value}</span><span class="opp-status ${oppStatusClass[o.stage]}">${o.stage}</span></div>`;
+  }).join('') || '<p style="font-size:13px;color:var(--muted);padding:14px 4px;">No opportunities match these filters.</p>';
+  document.getElementById('oppCount').textContent = `${filtered.length} opportunities found across ${new Set(filtered.map(o => o.country)).size} market${new Set(filtered.map(o => o.country)).size === 1 ? '' : 's'}`;
+  document.getElementById('oppPageInfo').textContent = `Page ${oppPage} of ${totalPages}`;
+  document.getElementById('oppPrev').disabled = oppPage <= 1;
+  document.getElementById('oppNext').disabled = oppPage >= totalPages;
+}
+renderOppPhaseStrip();
+initOppFilters();
+renderOpportunities();
+document.getElementById('oppCountryFilter').addEventListener('change', () => { oppPage = 1; renderOpportunities(); });
+document.getElementById('oppSegFilter').addEventListener('change', () => { oppPage = 1; renderOpportunities(); });
+document.getElementById('oppSearch').addEventListener('input', () => { oppPage = 1; renderOpportunities(); });
+document.getElementById('oppPrev').addEventListener('click', () => { if(oppPage > 1){ oppPage--; renderOpportunities(); } });
+document.getElementById('oppNext').addEventListener('click', () => { oppPage++; renderOpportunities(); });
+
+/* ---- Country scorecard (dashboard) ---- */
+const scorecard = [
+  {country:"Malaysia",    invest:"USD2.1B", nrw:"33.9%", ww:"58%", tariff:"USD0.38/m³", trend:"up",   trendVal:"+12%"},
+  {country:"Indonesia",   invest:"USD5.8B", nrw:"38.2%", ww:"46%", tariff:"USD0.24/m³", trend:"up",   trendVal:"+21%"},
+  {country:"Vietnam",     invest:"USD4.2B", nrw:"25.4%", ww:"57%", tariff:"USD0.31/m³", trend:"up",   trendVal:"+18%"},
+  {country:"Philippines", invest:"USD3.1B", nrw:"36.7%", ww:"49%", tariff:"USD0.35/m³", trend:"up",   trendVal:"+9%"},
+  {country:"Thailand",    invest:"USD2.4B", nrw:"28.1%", ww:"63%", tariff:"USD0.40/m³", trend:"down", trendVal:"-3%"},
+  {country:"Singapore",   invest:"USD0.8B", nrw:"8.5%",  ww:"96%", tariff:"USD1.02/m³", trend:"up",   trendVal:"+5%"}
+];
+document.getElementById('scorecardBody').innerHTML = scorecard.map(r => {
+  const nrwPct = parseFloat(r.nrw);
+  return `<tr>
+    <td class="sc-country">${r.country}</td>
+    <td>${r.invest}</td>
+    <td><div style="display:flex;align-items:center;gap:8px;"><div class="mini-bar" style="max-width:70px;"><span style="width:${Math.min(100, nrwPct*2)}%;"></span></div>${r.nrw}</div></td>
+    <td>${r.ww}</td>
+    <td>${r.tariff}</td>
+    <td><span class="trend-badge trend-${r.trend}"><i class="fa-solid fa-arrow-${r.trend}"></i> ${r.trendVal}</span></td>
+  </tr>`;
+}).join('');
 </script>
 
 </body>
