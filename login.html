@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — WaterX Asia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --navy:#0E2A3E; --primary:#065A82; --secondary:#1C7293; --accent-dark:#21295C;
+    --amber:#E8A33D; --amber-dark:#8A5A16; --ice:#EAF4F8; --ice-border:#CFE4EC;
+    --text-dark:#152430; --muted:#5B6B75; --white:#FFFFFF; --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;color:var(--text-dark);background:var(--ice);line-height:1.6;}
+  h1,h2,h3{font-family:'Poppins',sans-serif;font-weight:600;color:var(--navy);}
+  a{text-decoration:none;color:inherit;}
+  .demo-banner{background:var(--accent-dark);color:#C9D6F2;text-align:center;font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.4px;}
+  .demo-banner b{color:#fff;}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Poppins';font-weight:700;font-size:15px;}
+  .brand-name{font-family:'Poppins';font-weight:600;font-size:16px;color:var(--navy);}
+  .back-link{font-size:13.5px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px;}
+
+  .wrap{max-width:960px;margin:20px auto 60px;padding:0 24px;}
+  .card{background:#fff;border-radius:20px;box-shadow:0 20px 50px rgba(14,42,62,.08);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+  .panel{background:linear-gradient(150deg,var(--navy) 0%,var(--primary) 100%);color:#fff;padding:44px 38px;display:flex;flex-direction:column;justify-content:center;}
+  .panel .eyebrow{display:inline-block;background:rgba(255,255,255,.15);color:#DCEEF5;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;margin-bottom:16px;width:fit-content;}
+  .panel h1{color:#fff;font-size:24px;line-height:1.3;margin-bottom:12px;}
+  .panel p{color:#D7E7EE;font-size:13.5px;margin-bottom:22px;}
+  .panel ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+  .panel li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#EAF4F8;}
+  .panel li i{color:#8FE3D0;margin-top:2px;}
+
+  .form-side{padding:44px 40px;}
+  .form-side h2{font-size:21px;margin-bottom:6px;}
+  .form-side .sub{color:var(--muted);font-size:13.5px;margin-bottom:24px;}
+  .demo-note{background:#FBEEDD;border:1px solid #F1D9AE;border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--amber-dark);margin-bottom:22px;display:flex;gap:8px;align-items:flex-start;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--navy);margin-bottom:6px;}
+  .field input{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--ice-border);font-size:14px;font-family:'Inter';}
+  .field input:focus{outline:none;border-color:var(--primary);}
+  .row-between{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;margin-bottom:20px;}
+  .row-between label{display:flex;align-items:center;gap:6px;color:var(--muted);}
+  .row-between a{color:var(--primary);font-weight:600;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:600;font-size:14px;padding:12px 20px;border-radius:10px;border:none;cursor:pointer;width:100%;}
+  .btn-primary{background:var(--primary);color:#fff;}
+  .btn-primary:hover{background:#054766;}
+  .divider{display:flex;align-items:center;gap:12px;margin:22px 0;color:var(--muted);font-size:12px;}
+  .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--ice-border);}
+  .foot-note{text-align:center;font-size:13px;color:var(--muted);}
+  .foot-note a{color:var(--primary);font-weight:600;}
+  #formMsg{display:none;background:#E3F3EA;color:#1E7A46;border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:16px;}
+
+  @media(max-width:760px){ .card{grid-template-columns:1fr;} .panel{padding:32px 28px;} .form-side{padding:32px 28px;} }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">DEMO MOCKUP — for internal discussion only. <b>This login screen is illustrative; no real authentication is connected.</b></div>
+
+<div class="top">
+  <div class="brand">
+    <div class="brand-mark">AW</div>
+    <div class="brand-name">WaterX Asia</div>
+  </div>
+  <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to platform</a>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <div class="panel">
+      <span class="eyebrow"><i class="fa-solid fa-droplet"></i> Member access</span>
+      <h1>Sign in to your WaterX Asia account</h1>
+      <p>Members get full access to supplier profiles, the confidential M&amp;A deal room, and the ASEAN data &amp; research dashboard.</p>
+      <ul>
+        <li><i class="fa-solid fa-circle-check"></i> Full supplier directory with brochures &amp; videos</li>
+        <li><i class="fa-solid fa-circle-check"></i> Confidential M&amp;A and partnership teasers</li>
+        <li><i class="fa-solid fa-circle-check"></i> Saved searches and opportunity alerts</li>
+        <li><i class="fa-solid fa-circle-check"></i> Country-level data &amp; research dashboard</li>
+      </ul>
+    </div>
+    <div class="form-side">
+      <h2>Welcome back</h2>
+      <p class="sub">Enter your credentials to continue.</p>
+      <div class="demo-note"><i class="fa-solid fa-circle-info"></i> Demo mode — this mockup does not check real credentials. Enter any email and password to preview the sign-in flow.</div>
+      <div id="formMsg"><i class="fa-solid fa-circle-check"></i> Signed in — demo only, no account was actually created or verified.</div>
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="you@company.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" required>
+        </div>
+        <div class="row-between">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i> Sign in</button>
+      </form>
+      <div class="divider">or</div>
+      <p class="foot-note">Don't have an account yet? <a href="index.html#commercial" onclick="sessionStorage.setItem('goTo','list')">Request access / list your company</a></p>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('formMsg').style.display = 'block';
+  this.reset();
+});
+</script>
+
+</body>
+</html>
